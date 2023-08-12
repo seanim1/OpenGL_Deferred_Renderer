@@ -46,7 +46,8 @@ int main()
 
     // glfw window creation
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL); // glfwGetPrimaryMonitor()
+
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -81,6 +82,7 @@ int main()
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
+    glDisable(GL_BLEND);
 
     // build and compile shaders
     // -------------------------
@@ -120,14 +122,14 @@ int main()
     unsigned int gBuffer;
     glGenFramebuffers(1, &gBuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, gBuffer);
-    unsigned int gPosition, gNormal, gAlbedoSpec;
+    unsigned int gPositionShadow, gNormal, gAlbedoSpec;
     // position color buffer. Got the idea of using a G-buffer for shadow mask from https://gamedev.stackexchange.com/questions/25436/shadows-in-deferred-rendering
-    glGenTextures(1, &gPosition);
-    glBindTexture(GL_TEXTURE_2D, gPosition);
+    glGenTextures(1, &gPositionShadow);
+    glBindTexture(GL_TEXTURE_2D, gPositionShadow);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGBA, GL_FLOAT, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, gPosition, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, gPositionShadow, 0);
     // normal color buffer
     glGenTextures(1, &gNormal);
     glBindTexture(GL_TEXTURE_2D, gNormal);
@@ -158,7 +160,7 @@ int main()
 
     // lighting info
     // -------------
-    const unsigned int NR_POINT_LIGHTS = 64;
+    const unsigned int NR_POINT_LIGHTS = 780;
     glm::vec4 lightPositions[NR_POINT_LIGHTS];
     glm::vec4 lightColors[NR_POINT_LIGHTS];
     srand(13);
@@ -204,7 +206,7 @@ int main()
     // shader configuration
     // --------------------
     shaderLightingPass.use();
-    shaderLightingPass.setInt("gPosition", 0);
+    shaderLightingPass.setInt("gPositionShadow", 0);
     shaderLightingPass.setInt("gNormal", 1);
     shaderLightingPass.setInt("gAlbedoSpec", 2);
 
@@ -220,7 +222,7 @@ int main()
 
         // input
         // -----
-        processInput(window); 
+        processInput(window);
 
         // move objects
         // ------
@@ -251,7 +253,7 @@ int main()
         // --------------------------------------------------------------
         glm::mat4 lightProjection, lightView, model;
         glm::mat4 lightSpaceMatrix;
-        float near_plane = 1.0f, far_plane = 50.0f;
+        float near_plane = 0.01f, far_plane = 50.0f;
         //lightProjection = glm::perspective(glm::radians(45.0f), (GLfloat)SHADOW_WIDTH / (GLfloat)SHADOW_HEIGHT, near_plane, far_plane); // note that if you use a perspective projection matrix you'll have to change the light position as the current light position isn't enough to reflect the whole scene
         lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
         lightView = glm::lookAt(dirLightPos, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
@@ -268,6 +270,8 @@ int main()
             model = glm::mat4(1.0f);
             model = glm::translate(model, objectPositions[i]);
             model = glm::scale(model, glm::vec3(0.5f));
+            model = glm::rotate(model, currentFrame, glm::vec3(1, 1, 0));
+
             simpleDepthShader.setMat4("model", model);
             renderCube();
         }
@@ -301,6 +305,7 @@ int main()
             model = glm::mat4(1.0f);
             model = glm::translate(model, objectPositions[i]);
             model = glm::scale(model, glm::vec3(0.5f));
+            model = glm::rotate(model, currentFrame, glm::vec3(1, 1, 0));
             shaderGeometryPass.setMat4("model", model);
             renderCube();
         }
@@ -317,7 +322,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         shaderLightingPass.use();
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, gPosition);
+        glBindTexture(GL_TEXTURE_2D, gPositionShadow);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, gNormal);
         glActiveTexture(GL_TEXTURE2);

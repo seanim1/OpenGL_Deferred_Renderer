@@ -55,7 +55,7 @@ void main()
     // store the shadow mask
     gPosition.a = ShadowCalculation();
     // store specular power in gNormal's alpha component
-    gNormal.a = 64.0;
+    //gNormal.a = 64.0;
     // and the diffuse per-fragment color
     gAlbedoSpec.rgb = vec3(0.7,0.7,0.7);
     // store specular intensity in gAlbedoSpec's alpha component

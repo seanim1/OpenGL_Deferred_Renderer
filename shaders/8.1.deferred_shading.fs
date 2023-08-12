@@ -7,7 +7,7 @@ uniform sampler2D gPosition;
 uniform sampler2D gNormal;
 uniform sampler2D gAlbedoSpec;
 
-const int NR_POINT_LIGHTS = 64;
+const int NR_POINT_LIGHTS = 780;
 layout (std140) uniform GlobalUBO
 {
     vec3 pointLightPositions[NR_POINT_LIGHTS];
@@ -22,12 +22,11 @@ void main()
     vec3 FragPos = texture(gPosition, TexCoords).rgb;
     float ShadowMask = texture(gPosition, TexCoords).a;
     vec3 Normal = texture(gNormal, TexCoords).rgb;
-    float SpecularPower = texture(gNormal, TexCoords).a;
+    float SpecularPower = 64.0; //texture(gNormal, TexCoords).a;
     vec3 Diffuse = texture(gAlbedoSpec, TexCoords).rgb;
     float SpecularStrength = texture(gAlbedoSpec, TexCoords).a;
     
     vec3 lighting  = Diffuse * 0.1; // hard-coded ambient component
-    vec3 viewDir  = normalize(viewPos - FragPos);
     
     // phase 1: directional lighting (based on 2.6 Multiple Lights)
     vec3 dirLightCol = vec3(0.55, 0.55, 0.85);
@@ -35,6 +34,7 @@ void main()
     // diffuse shading
     vec3 diffuse = max(dot(Normal, lightDir), 0.0) * dirLightCol;
     // specular shading
+    vec3 viewDir  = normalize(viewPos - FragPos);
     vec3 reflectDir = reflect(-lightDir, Normal);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), SpecularPower);
     vec3 specular = dirLightCol * spec * SpecularStrength;

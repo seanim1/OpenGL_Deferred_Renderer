@@ -23,28 +23,28 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\8.1.g_buffer.vs">
+    <None Include="shaders\3.1.3.shadow_mapping_depth.fs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="src\8.1.deferred_light_box.fs">
+    <None Include="shaders\3.1.3.shadow_mapping_depth.vs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="src\8.1.deferred_light_box.vs">
+    <None Include="shaders\8.1.deferred_light_box.fs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="src\8.1.deferred_shading.fs">
+    <None Include="shaders\8.1.deferred_light_box.vs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="src\8.1.deferred_shading.vs">
+    <None Include="shaders\8.1.deferred_shading.fs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="src\8.1.g_buffer.fs">
+    <None Include="shaders\8.1.deferred_shading.vs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="src\3.1.3.shadow_mapping_depth.fs">
+    <None Include="shaders\8.1.g_buffer.fs">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="src\3.1.3.shadow_mapping_depth.vs">
+    <None Include="shaders\8.1.g_buffer.vs">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
