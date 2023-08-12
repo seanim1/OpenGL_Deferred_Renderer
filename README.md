@@ -8,3 +8,14 @@ Tested on RTX3080:
 
 It seems to be able to render about 280 point lights + 1 shadow casting directional light at 4K (3840x2160) 60 fps.
 It seems to be able to render about 780 point lights + 1 shadow casting directional light at 1080p (1920x1080) 60 fps.
+
+G-Buffers:
+<div class="row">
+  <img src="FinishedHD.png?raw=true" width="300">
+  <img src="lightViewDepthHD.png?raw=true" width="300">
+  <img src="PositionHD.png?raw=true" width="300">
+  <img src="NormalHD.png?raw=true" width="300">
+  <img src="ShadowMaskHD.png?raw=true" width="300">
+  <img src="DepthHD.png?raw=true" width="300">
+  <img src="AlbedoHD.png?raw=true" width="300">
+</div>
