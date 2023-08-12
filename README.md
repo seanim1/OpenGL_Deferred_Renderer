@@ -12,10 +12,12 @@ It seems to be able to render about 780 point lights + 1 shadow casting directio
 G-Buffers:
 <div class="row">
   <img src="Examples/FinishedHD.png?raw=true" width="1000">
+  Finished
   <img src="Examples/lightViewDepthHD.png?raw=true" width="200">
   <img src="Examples/PositionHD.png?raw=true" width="300">
   <img src="Examples/NormalHD.png?raw=true" width="300">
   <img src="Examples/ShadowMaskHD.png?raw=true" width="300">
   <img src="Examples/DepthHD.png?raw=true" width="300">
+  Depth
   <img src="Examples/AlbedoHD.png?raw=true" width="300">
 </div>
