@@ -160,7 +160,7 @@ int main()
 
     // lighting info
     // -------------
-    const unsigned int NR_POINT_LIGHTS = 780;
+    const unsigned int NR_POINT_LIGHTS = 255;
     glm::vec4 lightPositions[NR_POINT_LIGHTS];
     glm::vec4 lightColors[NR_POINT_LIGHTS];
     srand(13);

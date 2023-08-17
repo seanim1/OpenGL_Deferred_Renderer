@@ -7,7 +7,7 @@ uniform sampler2D gPosition;
 uniform sampler2D gNormal;
 uniform sampler2D gAlbedoSpec;
 
-const int NR_POINT_LIGHTS = 780;
+const int NR_POINT_LIGHTS = 255;
 layout (std140) uniform GlobalUBO
 {
     vec3 pointLightPositions[NR_POINT_LIGHTS];
