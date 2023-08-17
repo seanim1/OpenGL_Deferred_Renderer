@@ -1,6 +1,7 @@
 # OpenGL_Deferred_Renderer
 The following project implements Deferred Rendering and Shadow Mapping based on examples from “learnopengl.com”.
-[<img src="Examples/FinishedHD.png?raw=true" width="50%">](https://youtu.be/PEu0Og-CiwY "Now in Android: 55")
+
+Link to Youtube video demo: ( https://youtu.be/PEu0Og-CiwY )
 
 The rendering is done in several passes:
 
