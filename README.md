@@ -1,5 +1,6 @@
 # OpenGL_Deferred_Renderer
 The following project implements Deferred Rendering and Shadow Mapping based on examples from “learnopengl.com”.
+
 The rendering is done in several passes:
 
 &emsp;1st Pass (Shadow Map): The Light View Depth Map is drawn from the directional light’s perspective on a 1024x1024 texture.
