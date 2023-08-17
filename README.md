@@ -15,7 +15,12 @@ G-Buffers:
   <img src="Examples/lightViewDepthHD.png?raw=true" width="200">
   <img src="Examples/PositionHD.png?raw=true" width="300">
   <img src="Examples/NormalHD.png?raw=true" width="300">
+  Normal
+  
   <img src="Examples/ShadowMaskHD.png?raw=true" width="300">
+  Shadow Mask
   <img src="Examples/DepthHD.png?raw=true" width="300">
+  Depth
   <img src="Examples/AlbedoHD.png?raw=true" width="300">
+  Albedo
 </div>
