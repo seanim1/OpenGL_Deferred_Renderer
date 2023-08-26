@@ -1,4 +1,4 @@
-# OpenGL_Deferred_Renderer
+# OpenGL_Deferred_Shading
 The following project implements Deferred Rendering and Shadow Mapping based on examples from “learnopengl.com”.
 
 Link to Youtube video demo: ( https://youtu.be/PEu0Og-CiwY )
